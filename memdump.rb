@@ -3,6 +3,14 @@
 #Provided by Carlos Perez at carlos_perez[at]darkoperator.com
 #Contributor sh4d0w4llk3r
 #Verion: 1.0.0 
+
+
+##
+# WARNING: Metasploit no longer maintains or accepts meterpreter scripts.
+# If you'd like to improve this script, please try to port it as a post
+# module instead. Thank you.
+##
+
 session = client
 host,port = session.tunnel_peer.split(':')
 # Script Options
