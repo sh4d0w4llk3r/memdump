@@ -18,3 +18,9 @@ add the memdump.rb script to the directory
 
 
     /usr/share/metasploit-framework/scripts/meterpreter
+    
+DumpIt.exe is available here https://my.comae.io/login
+
+Disclamer : I am not the author of this script I only made it up to date with some modifications to make it compatible with the new OS Windows 7/8/10. The paternity of this script is all natural to darcoperator a monster whose github is here
+
+
