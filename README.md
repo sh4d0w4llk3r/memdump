@@ -11,7 +11,10 @@ The changes bring make this script compatible to windows 7/8/10 OS using the Dum
 Have a Meterpreter session on the target.
 
 Add the DumpIt.exe software to the directory
-  /usr/share/metasploit-framework/data/
+ 
+    /usr/share/metasploit-framework/data/
 
 add the memdump.rb script to the directory
-  /Usr/share/metasploit-framework/scripts/meterpreter
+
+
+    /usr/share/metasploit-framework/scripts/meterpreter
